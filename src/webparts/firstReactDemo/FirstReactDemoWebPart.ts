@@ -21,7 +21,8 @@ export default class FirstReactDemoWebPart extends BaseClientSideWebPart<IFirstR
     const element: React.ReactElement<IFirstReactDemoProps> = React.createElement(
       FirstReactDemo,
       {
-        description: this.properties.description
+        description: this.properties.description,
+        context: this.context
       }
     );
 

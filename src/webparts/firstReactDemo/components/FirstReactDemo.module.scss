@@ -1,6 +1,15 @@
 @import '~office-ui-fabric-react/dist/sass/References.scss';
 
 .firstReactDemo {
+
+  .myStyles {
+    width: 100%;
+    .dropdown {
+      width: 50%;
+    }
+
+  }
+
   .container {
     max-width: 700px;
     margin: 0px auto;
@@ -10,7 +19,7 @@
   .row {
     @include ms-Grid-row;
     @include ms-fontColor-white;
-    background-color: $ms-color-themeDark;
+    background-color: blueviolet;
     padding: 20px;
   }
 
@@ -20,16 +29,20 @@
     @include ms-xl8;
     @include ms-xlPush2;
     @include ms-lgPush1;
+    width: 100% !important;
   }
 
   .title {
     @include ms-font-xl;
     @include ms-fontColor-white;
+    font-weight: bold;
+    margin-left: 100px;
   }
 
   .subTitle {
     @include ms-font-l;
     @include ms-fontColor-white;
+    font-weight: bold;
   }
 
   .description {
