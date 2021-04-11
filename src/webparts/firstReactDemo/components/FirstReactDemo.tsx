@@ -19,7 +19,7 @@ export default class FirstReactDemo extends React.Component<IFirstReactDemoProps
   }
 
   public componentDidMount(){
-    this._spOps.GetAllList(this.props.context).then((results:IDropdownOption[]) => {
+    this._spOps.GetAllLists(this.props.context).then((results:IDropdownOption[]) => {
         this.setState({listTitles: results});
     });
   }

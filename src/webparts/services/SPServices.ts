@@ -4,7 +4,7 @@ import { IDropdownOption } from "office-ui-fabric-react";
 
 export default class SPOperations {
 
-    public GetAllList(context:WebPartContext): Promise<IDropdownOption[]>{
+    public GetAllLists(context:WebPartContext): Promise<IDropdownOption[]>{
       let restApiUrl:string = context.pageContext.web.absoluteUrl + "/_api/web/lists?select=Title";
       let listTitles: IDropdownOption[] = [];
 
