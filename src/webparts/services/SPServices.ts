@@ -4,7 +4,7 @@ import { IDropdownOption } from "office-ui-fabric-react";
 
 export default class SPOperations {
 
-    public GetAllLists(context:WebPartContext): Promise<IDropdownOption[]>{
+    public GetAllListsTitles(context:WebPartContext): Promise<IDropdownOption[]>{
       let restApiUrl:string = context.pageContext.web.absoluteUrl + "/_api/web/lists?select=Title";
       let listTitles: IDropdownOption[] = [];
 
@@ -22,5 +22,9 @@ export default class SPOperations {
           reject("error occured " + error);
         });
       });
+    }
+
+    public CreateListItem(context:WebPartContext,listTitle:string):void {
+        
     }
 }

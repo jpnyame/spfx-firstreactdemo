@@ -4,11 +4,12 @@ import { IFirstReactDemoProps } from './IFirstReactDemoProps';
 import { IFirstReactDemoState } from './IFirstReactDemoState';
 import { escape } from '@microsoft/sp-lodash-subset';
 import SPOperations from '../../services/SPServices';
-import {Dropdown, IDropdownOption} from 'office-ui-fabric-react';
+import {Button, Dropdown, IDropdownOption} from 'office-ui-fabric-react';
 
 export default class FirstReactDemo extends React.Component<IFirstReactDemoProps, IFirstReactDemoState> {
 
   private _spOps: SPOperations;
+  private selectedListTile:string;
 
   public constructor(props:IFirstReactDemoProps){
     super(props);
@@ -18,16 +19,18 @@ export default class FirstReactDemo extends React.Component<IFirstReactDemoProps
     };
   }
 
+  public getListTitle(event:any, data:any){
+    this.selectedListTile = data.text;
+  }
+
   public componentDidMount(){
-    this._spOps.GetAllLists(this.props.context).then((results:IDropdownOption[]) => {
+    this._spOps.GetAllListsTitles(this.props.context).then((results:IDropdownOption[]) => {
         this.setState({listTitles: results});
     });
   }
 
 
   public render(): React.ReactElement<IFirstReactDemoProps> {
-
-    let options:IDropdownOption[] = [];
 
     return (
       <div className={ styles.firstReactDemo }>
@@ -40,8 +43,16 @@ export default class FirstReactDemo extends React.Component<IFirstReactDemoProps
                   <Dropdown
                   className={styles.dropdown}
                   options={this.state.listTitles}
-                  placeholder="--- Select your list ---">
+                  placeholder="--- Select your list ---"
+                  onChange={this.getListTitle}
+                  >
+
                   </Dropdown>
+                  <Button
+                  className={styles.myButton}
+                  text="Create List Item"
+                  onClick={() => this._spOps.CreateListItem(this.props.context,this.selectedListTile)}
+                  ></Button>
             </div>
             </div>
 
