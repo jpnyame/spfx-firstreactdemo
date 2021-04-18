@@ -1,5 +1,6 @@
 import { IDropdownOption } from "office-ui-fabric-react";
 
 export interface IFirstReactDemoState {
- listTitles: IDropdownOption[];
+  listTitles: IDropdownOption[];
+  status: string;
 }

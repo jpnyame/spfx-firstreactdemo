@@ -4,7 +4,7 @@ import { IFirstReactDemoProps } from './IFirstReactDemoProps';
 import { IFirstReactDemoState } from './IFirstReactDemoState';
 import { escape } from '@microsoft/sp-lodash-subset';
 import SPOperations from '../../services/SPServices';
-import {Button, Dropdown, IDropdownOption} from 'office-ui-fabric-react';
+import {DefaultButton, Dropdown, IDropdownOption} from 'office-ui-fabric-react';
 
 export default class FirstReactDemo extends React.Component<IFirstReactDemoProps, IFirstReactDemoState> {
 
@@ -15,11 +15,12 @@ export default class FirstReactDemo extends React.Component<IFirstReactDemoProps
     super(props);
     this._spOps = new SPOperations();
     this.state = {
-      listTitles:[]
+      listTitles:[],
+      status:""
     };
   }
 
-  public getListTitle(event:any, data:any){
+  public getListTitle = (event:any, data:any) =>{
     this.selectedListTile = data.text;
   }
 
@@ -48,11 +49,18 @@ export default class FirstReactDemo extends React.Component<IFirstReactDemoProps
                   >
 
                   </Dropdown>
-                  <Button
+                  <DefaultButton
                   className={styles.myButton}
                   text="Create List Item"
-                  onClick={() => this._spOps.CreateListItem(this.props.context,this.selectedListTile)}
-                  ></Button>
+                  onClick={() =>
+                    this._spOps
+                    .CreateListItem(this.props.context,this.selectedListTile)
+                    .then((result:string) =>{
+                    this.setState({status: result});
+                  })}
+                  ></DefaultButton>
+
+                  <div>{this.state.status}</div>
             </div>
             </div>
 
